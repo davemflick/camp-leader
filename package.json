@@ -23,7 +23,8 @@
   "homepage": "https://github.com/davemflick/camp-leader#readme",
   "dependencies": {
     "react": "^15.4.2",
-    "react-dom": "^15.4.2"
+    "react-dom": "^15.4.2",
+    "superagent": "^3.4.4"
   },
   "devDependencies": {
     "babel-core": "^6.23.1",

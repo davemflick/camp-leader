@@ -3,6 +3,7 @@ import { render } from 'react-dom';
 import TableContainer from './components/TableContainer';
 import Header from './components/Header';
 import styles from "!style-loader!css-loader!sass-loader!./styles/main.css";
+import fccUsers from './utils/fccUsers';
 
 
 class App extends React.Component {
@@ -11,6 +12,7 @@ class App extends React.Component {
 			<div>
 			 <Header />
 			 <TableContainer />
+			 <fccUsers />
 			</div>
 		)
 	}
