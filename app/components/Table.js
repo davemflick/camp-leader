@@ -1,4 +1,5 @@
 import React from 'react';
+import FccUsers from '../utils/FccUsers'
 
 export default class Table extends React.Component {
 	render () {
@@ -12,6 +13,7 @@ export default class Table extends React.Component {
 			   <th scope='column' className='col-xs-3'>30 Day Point Total</th>
 			   <th scope='column' className='col-xs-3'>Cumulative Points </th>
 			  </tr>
+			   <FccUsers />
 			 </tbody>
 			</table>
 			
