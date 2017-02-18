@@ -1,0 +1,45 @@
+
+$black: #060407;
+$oatmeal: #fcf8ea;
+$green: #66c068;
+$gray: #bfc3a6;
+$border: 1px solid $oatmeal;
+
+body {
+	background-color: $gray;
+	text-align: center;
+}
+
+.headerContainer {
+	border: $border;
+	background-color: $oatmeal;
+	border: 3px solid $gray;
+	h1{
+		color: #060407;
+		text-shadow: 2px 2px  $green;
+	}
+}
+
+#tableContain{
+	padding: 0;
+	margin-top: 50px;
+	background-color: $oatmeal;
+	border: $border;
+	height: 500px;
+	#tableChamps {
+		border: $border;
+		background-color: $green;
+		margin-top: 0;
+		margin-bottom: 0;
+	}
+}
+
+#table {
+	#titleColumns{
+		th {
+			border: 1px solid $gray;
+			font: 20px;
+		}
+	}
+}
+
