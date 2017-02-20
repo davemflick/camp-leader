@@ -1,14 +1,14 @@
 import React from 'react';
 
-const recentUrl = 'https://fcctop100.herokuapp.com/api/fccusers/top/recent';
-export default class FccUsers extends React.Component {
+const allTimeUrl = 'https://fcctop100.herokuapp.com/api/fccusers/top/alltime';
+export default class Alltime extends React.Component {
 	constructor(props){
 		super(props);
 		this.state = {
-			list: []
+			list: [],
+			recent: true
 		};
 	}
-
 
  	componentDidMount(){
  		this.CamperList();
@@ -16,7 +16,7 @@ export default class FccUsers extends React.Component {
 
 
  	CamperList(){
-		fetch(recentUrl)
+	 fetch(allTimeUrl)
 		.then((response)=>{
 			return response.json()})
 		.then( (data)=> {
@@ -24,7 +24,7 @@ export default class FccUsers extends React.Component {
 				list: data
 			})
 		})
-	}
+		}
 
 
  	render() {
@@ -41,11 +41,11 @@ export default class FccUsers extends React.Component {
  		const ranked = rank.map((element)=> {
  				return(
  				<tr key={element.toString()} className='camperRow'>
- 				<th className='col-xs-2 camperRow' >{element}</th>
+ 				<th className='col-xs-2' >{element}</th>
  				<td className='col-xs-4 camperRow' ><img src={pic[element-1]}/>
  				<a href={'https://www.freecodecamp.com/'+ camper[element-1]} target='_blank' >{camper[element-1]}</a></td>
- 				<td className='col-xs-3 camperRow' >{recent[element-1]}</td>
- 				<td className='col-xs-3 camperRow' >{alltime[element-1]}</td>
+ 				<td className='col-xs-3' >{recent[element-1]}</td>
+ 				<td className='col-xs-3' >{alltime[element-1]}</td>
  				</tr>
  				)
  			})
