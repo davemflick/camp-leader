@@ -1,31 +1,76 @@
 import React from 'react';
-import Request from 'superagent';
-import _ from 'lodash';
 
 export default class FccUsers extends React.Component {
 	constructor(props){
 		super(props);
 		this.state = {
 			list: [],
-			count: 1,
-			sort: 'recent'
+			recent: true
 		};
+		this.handleClick = this.handleClick.bind(this);
 	}
 
-	componentDidMount() {
-		fetch('https://fcctop100.herokuapp.com/api/fccusers/top/recent')
-		.then((response)=>{
+		componentWillMount() {
+		const recentUrl = 'https://fcctop100.herokuapp.com/api/fccusers/top/recent';
+		const allTimeUrl = 'https://fcctop100.herokuapp.com/api/fccusers/top/alltime';
+		if(this.state.recent == true){
+			return fetch(recentUrl)
+			.then((response)=>{
 			return response.json()})
 		.then( (data)=> {
 			this.setState({
 				list: data
 			});
 		});
+		} else {
+			return fetch(allTimeUrl)
+			.then((response)=>{
+			return response.json()})
+		.then( (data)=> {
+			this.setState({
+				list: data
+			});
+			console.log(this.state.recent)
+		});
+		}
 	}
 
+	componentDidUpdate() {
+			const recentUrl = 'https://fcctop100.herokuapp.com/api/fccusers/top/recent';
+		const allTimeUrl = 'https://fcctop100.herokuapp.com/api/fccusers/top/alltime';
+		if(this.state.recent == true){
+			return fetch(recentUrl)
+			.then((response)=>{
+			return response.json()})
+		.then( (data)=> {
+			this.setState({
+				list: data
+			});
+		});
+		} else {
+			return fetch(allTimeUrl)
+			.then((response)=>{
+			return response.json()})
+		.then( (data)=> {
+			this.setState({
+				list: data
+			});
+		});
+		}
+	}
+	
+
+	handleClick() {
+		this.setState({
+			recent: !this.state.recent
+		});
+		console.log(this.state.recent)
+    }
+
+
  render() {
- 	const data = this.state.list
- 
+ 	// Loop through API Objects and put individual properties into their own arrays
+ 	const data = this.state.list;
  	const camper = data.map((obj) => obj.username);
  	const pic = data.map((obj) => obj.img);
  	const recent = data.map((obj) => obj.recent);
@@ -33,9 +78,8 @@ export default class FccUsers extends React.Component {
  	const rank = data.map((obj) => data.indexOf(obj) + 1);
 
 
- 	return (
- 			<tbody>
- 			{rank.map((element)=> {
+ 	function RecentList(){
+ 		const ranked = rank.map((element)=> {
  				return(
  				<tr key={element.toString()}>
  				<th className='col-xs-2' >{element}</th>
@@ -44,11 +88,21 @@ export default class FccUsers extends React.Component {
  				<td className='col-xs-3' >{alltime[element-1]}</td>
  				</tr>
  				)
- 			})}			
+ 			})
+ 		return ranked
+ 	}
+
+ 	return (
+ 		<div>
+ 			<button type='button' className='col-xs-12 btn btn-default' onClick={this.handleClick}>ToggleTitties </button>
+ 			<table className='col-xs-12 table'>
+ 			<tbody >
+ 			{RecentList()}			
  			</tbody>
+ 			</table>
+ 		</div>
  	)
 }
-
 
 
 }//End of export

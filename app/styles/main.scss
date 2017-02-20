@@ -34,7 +34,12 @@ body {
 	}
 }
 
-#table {
+.btn {
+	margin-top: 0;
+}
+
+.table {
+	margin-bottom: 0;
 	#titleColumns{
 		th {
 			border: 1px solid $gray;
@@ -51,5 +56,4 @@ img {
 	width: 30px;
 	height: 30px;
 	display: table-row;
-
 }
